@@ -15,7 +15,7 @@ namespace SpiHardwareUnitTests
     public class SimpleSpiTests
     {
         static SpiDevice _spiDevice;
-        static SpiConnectionSettings _connectinSettings;
+        static SpiConnectionSettings _connectionSettings;
 
         [Setup]
         public void TryToSeeIfSpiIsSupported()
@@ -23,8 +23,8 @@ namespace SpiHardwareUnitTests
             try
             {
                 // Note: the ChipSelect pin should be adjusted to your device
-                _connectinSettings = new SpiConnectionSettings(1, 12);
-                _spiDevice = SpiDevice.Create(_connectinSettings);
+                _connectionSettings = new SpiConnectionSettings(1, 12);
+                _spiDevice = SpiDevice.Create(_connectionSettings);
             }
             catch (Exception)
             {
@@ -57,7 +57,7 @@ namespace SpiHardwareUnitTests
         }
 
         [TestMethod]
-        public void CheckSpiConectionSettings_01()
+        public void CheckSpiConnectionSettings_01()
         {
             // Arrange
             SpiConnectionSettings connectionSettings = new SpiConnectionSettings(1);
@@ -76,7 +76,7 @@ namespace SpiHardwareUnitTests
 
 
         [TestMethod]
-        public void CheckSpiConectionSettingsClone()
+        public void CheckSpiConnectionSettingsClone()
         {
             SpiConnectionSettings connectionSettings = new SpiConnectionSettings(1, 12);
             connectionSettings.ChipSelectLineActiveState = PinValue.High;
@@ -110,12 +110,12 @@ namespace SpiHardwareUnitTests
             connToTest.DataBitLength = 16;
 
             //Assert
-            Assert.NotEqual(_connectinSettings.DataBitLength, connToTest.DataBitLength);
-            Assert.NotEqual(_connectinSettings.ChipSelectLine, connToTest.ChipSelectLine);
+            Assert.NotEqual(_connectionSettings.DataBitLength, connToTest.DataBitLength);
+            Assert.NotEqual(_connectionSettings.ChipSelectLine, connToTest.ChipSelectLine);
         }
 
         [TestMethod]
-        public void FullTrasferSpanByte()
+        public void FullTransferSpanByte()
         {
             Debug.WriteLine("For this test, make sure you connect MOSI to MISO");
             // Arrange
@@ -130,7 +130,7 @@ namespace SpiHardwareUnitTests
         }
 
         [TestMethod]
-        public void FullTrasferPartialSpanByte()
+        public void FullTransferPartialSpanByte()
         {
             Debug.WriteLine("For this test, make sure you connect MOSI to MISO");
             // Arrange
